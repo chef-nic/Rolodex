@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftData
+import CoreLocation
 
 @Model
 class Person: Comparable {
@@ -18,11 +19,13 @@ class Person: Comparable {
     var id: UUID
     var name: String
     @Attribute(.externalStorage) var image: Data
+    var metAt: Location
     
     init(name: String, image: Data) {
         self.id = UUID()
         self.name = name
         self.image = image
+        self.metAt = Location(lattitude: 0, longitude: 0)
     }
     
 }

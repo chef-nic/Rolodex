@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct PersonDetailView: View {
     var person: Person
@@ -17,6 +18,17 @@ struct PersonDetailView: View {
                     .padding()
                     .font(.headline)
                 ImageView(imageData: person.image)
+                Map(initialPosition:
+                    MapCameraPosition.region(
+                        MKCoordinateRegion(
+                            center: CLLocationCoordinate2D(latitude: person.metAt.lattitude, longitude: person.metAt.longitude),
+                            span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+                        )
+                    )
+                ) {
+                    Marker("Met \(person.name) Here", coordinate: CLLocationCoordinate2D(latitude: person.metAt.lattitude, longitude: person.metAt.longitude))
+                }
+                .frame(height: 300)
             }
         }
     }
